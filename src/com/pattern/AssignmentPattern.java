@@ -32,6 +32,7 @@ public class AssignmentPattern {
         System.out.println("\nPattern 8");
         pattern8(4);
     }
+// NOTE : n(rows) -> means 'number of rows'.
 
     /*
     Star Patter 1
@@ -148,12 +149,20 @@ public class AssignmentPattern {
    Ruby Pattern 6
    --------------------------------------
    - In this pattern there are '2n-1' rows.
-   - In each row there are 'row' number of columns.
+   - Each row consists of:
+        1.Space pattern
+        2.'Alphabet + Space + Alphabet' pattern
+   - Number of spaces in each row is given by:-
+        n(spaces) = n - n(rows)         {if rows<=n}
+        n(spaces) = n(row) - n  {if rows>n}
    - Value in the first column of row is given by variable 'num':-
            num = 1 {if row is odd}
            num = 0 {if row is even}
-   - Rest (n-1) columns of each row are filled with alternate series of 's and 1's.
-   - If value in first column is 1 then the value is changed to 0 and vice versa.
+   - Same character(alphabet) is present in the first and last column of a row.
+   - Rest all the columns between the alphabets is filled by blank spaces.
+   - After each row character is updated as follows:-
+           c = char(ASCII(c-1))   {if row>=n}
+           c = char(ASCII(c+1))   {if row<n}
    - After each row add a new line.
     */
     static void pattern6(int n) {
@@ -176,6 +185,26 @@ public class AssignmentPattern {
         }
     }
 
+    /*
+    Patter 7
+    ----------------
+    - The upper and lower half of the pattern are identical.
+    - Hence it is broken into 2 parts:-
+          1. Upper half
+          2. Lower half
+    - Each row consists of:-
+          1. Space pattern
+          2. Star pattern
+    - Logic for Upper half:-
+         - There are 'n' rows.
+         - Number of 'spaces' in each row is given by 'row-1'.
+         - Number of '*' in each row is given by 'n-row+1'.
+    - Logic for Lower half:-
+         - There are 'n' rows.
+         - Number of 'spaces' in each row is given by 'n-row'.
+         - Number of '*' in each row is given by 'row'.
+    - After each row we are adding a new line.
+     */
     static void pattern7(int n){
         for(int row = 1;row<=n;row++){
             for(int s = 2;s<=row;s++){
@@ -197,6 +226,22 @@ public class AssignmentPattern {
         }
     }
 
+    /*
+    Patter 8
+    ----------------
+    - In this pattern there are '2n-1' rows.
+    - Each row consists of:
+       1.Space pattern
+       2.Number pattern
+   - Number of spaces in each row is given by: -
+        n(spaces) = n-row {if row<=n}
+        n(spaces) = row-n {if row>n}
+   - Number of column in each row is given by:-
+        n(column) = 2*n-n(row) {if row>n }
+        n(column) = n(row)
+   - Print the 'column' value for each iteration of inner numeric loop.
+   - After each row add a new line.
+     */
     static void pattern8(int n){
         for(int row = 1;row<2*n;row++){
             int space = row>n?row-n:n-row;
